@@ -11,7 +11,7 @@ export async function getPosts(){
     }
 }
 
-export async function getPost(id: number){
+export async function getPostById(id: number){
     try {
         const response = await api.get(`/posts/${id}`); 
         return response.data;
