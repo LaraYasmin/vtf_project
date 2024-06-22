@@ -3,5 +3,5 @@
 </template>
 
 <script setup lang="ts">
-import PostComponent from "./components/PostsComponent.vue";
+import PostComponent from "../components/PostsComponent.vue";
 </script>

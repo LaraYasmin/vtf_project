@@ -17,7 +17,11 @@
         <tr v-for="item in posts" :key="item.id">
           <td>{{ item.id }}</td>
           <td>{{ item.title }}</td>
-          <td class="actions" @click="handleClick">Details</td>
+          <td class="actions">
+            <router-link :to="{ name: 'post-details', params: { id: item.id } }"
+              >Details</router-link
+            >
+          </td>
         </tr>
       </tbody>
     </v-table>
@@ -27,21 +31,23 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { getPosts } from "../services/post.services";
+import PostDetails from "./PostsDetails.vue";
+import { useRouter } from "vue-router";
 
 const props = defineProps<{
   id: number;
   title: string;
-  body: string;
-  userId: number;
 }>();
 
-const posts = ref<
-  Array<{ id: number; title: string; body: string; userId: number }>
->([]);
+//check double rendering
 
-const handleClick = () => {
-  console.log("clicked");
-};
+const router = useRouter();
+
+const posts = ref<Array<{ id: number; title: string }>>([]);
+
+// const handleClick = (postId: number) => {
+//   router.push({ name: "post-details", params: { id: postId } });
+// };
 
 onMounted(async () => {
   posts.value = await getPosts();
