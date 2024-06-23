@@ -17,11 +17,7 @@
         <tr v-for="item in posts" :key="item.id">
           <td>{{ item.id }}</td>
           <td>{{ item.title }}</td>
-          <td class="actions">
-            <router-link :to="{ name: 'post-details', params: { id: item.id } }"
-              >Details</router-link
-            >
-          </td>
+          <td class="actions" @click="handleClick(item.id)">Details</td>
         </tr>
       </tbody>
     </v-table>
@@ -39,15 +35,13 @@ const props = defineProps<{
   title: string;
 }>();
 
-//check double rendering
-
 const router = useRouter();
 
 const posts = ref<Array<{ id: number; title: string }>>([]);
 
-// const handleClick = (postId: number) => {
-//   router.push({ name: "post-details", params: { id: postId } });
-// };
+const handleClick = (postId: number) => {
+  router.push({ name: "post-details", params: { id: postId } });
+};
 
 onMounted(async () => {
   posts.value = await getPosts();
