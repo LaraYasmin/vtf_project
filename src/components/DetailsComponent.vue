@@ -20,7 +20,7 @@ const props = defineProps<{
 
 const route = useRoute();
 const postId = ref(route.params.id);
-const post = ref({});
+const post = ref(props);
 
 onMounted(async () => {
   post.value = await getPostById(postId.value);

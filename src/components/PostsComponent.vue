@@ -27,13 +27,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { getPosts } from "../services/post.services";
-import PostDetails from "./PostsDetails.vue";
 import { useRouter } from "vue-router";
-
-const props = defineProps<{
-  id: number;
-  title: string;
-}>();
 
 const router = useRouter();
 
